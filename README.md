@@ -25,10 +25,7 @@ iCLOTHING allows users to interact with the website as either customers or admin
 		An administrator may view and reply to querys submitted by customers.
 
 ## Background
-	This is a web application developed using the ASP.NET framework. Using the Model View Controller software
-architecture, we have developed a website that allows users to buy clothing after creating an account or 
-logging in. The website is split up into three departmnets, Men's, Women's, and Kid's, each havin their own
-categories and products. The website features a numbers a brands that products may be from.
+This is a web application developed using the ASP.NET framework. Using the Model View Controller software architecture, we have developed a website that allows users to buy clothing after creating an account or logging in. The website is split up into three departmnets, Men's, Women's, and Kid's, each havin their own categories and products. The website features a numbers a brands that products may be from.
 
 ## Contact Information
 May be found on the iCLOTHING website!
