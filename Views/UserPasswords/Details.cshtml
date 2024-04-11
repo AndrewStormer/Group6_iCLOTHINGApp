@@ -1,0 +1,58 @@
+﻿@model Group6_iCLOTHINGApp.Models.UserPasswords
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserPasswords</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.userAccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userAccountName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userEncryptedPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userEncryptedPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.passwordExpiryTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.passwordExpiryTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userAccountExpiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userAccountExpiryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customers.customerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customers.customerName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.userID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

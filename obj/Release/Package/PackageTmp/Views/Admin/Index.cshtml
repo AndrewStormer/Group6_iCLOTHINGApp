@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+
+<!DOCTYPE html>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("User Comments", "Index", "UserComments")</h2>
+        <p>View user comments</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("User Queries", "Index", "UserQuerys")</h2>
+        <p>View and reply to user queries</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Edit About Us", "Edit", "AboutUs")</h2>
+        <p>Edit description of the website.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Add a comment", "Create", "UserComments")</h2>
+        <p>Leave your feedback of our website.</p>
+    </div>
+
+    <div class="col-md-4">
+         <h2>@Html.ActionLink("Admin Page", "Index", "Admin")</h2>
+         <p>Various admin functionality</p>
+    </div>
+
+</div>

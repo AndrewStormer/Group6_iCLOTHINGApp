@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Group6_iCLOTHINGApp.Models.Categories>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.categoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.categoryDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departments.departmentName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.categoryName, "Index", "Products", new { id = item.categoryID }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.categoryDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departments.departmentName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.categoryID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.categoryID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.categoryID })
+        </td>
+    </tr>
+}
+
+</table>

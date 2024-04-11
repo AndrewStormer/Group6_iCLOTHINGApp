@@ -1,0 +1,72 @@
+﻿@model Group6_iCLOTHINGApp.Models.Products
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Products</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brands.brandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brands.brandName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categories.categoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categories.categoryName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

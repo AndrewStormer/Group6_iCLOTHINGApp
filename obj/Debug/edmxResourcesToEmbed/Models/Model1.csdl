@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Group6_iCLOTHINGDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AboutUs">
+    <Key>
+      <PropertyRef Name="aboutUsID" />
+    </Key>
+    <Property Name="companyAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="companyShippingPolicy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="companyReturnPolicy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="companyContactInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="companyBusinessDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="aboutUsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Administrators">
+    <Key>
+      <PropertyRef Name="adminID" />
+    </Key>
+    <Property Name="adminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adminName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="adminEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dateHired" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Emails" Relationship="Self.FK_Emails_Administrators" FromRole="Administrators" ToRole="Emails" />
+  </EntityType>
+  <EntityType Name="Brands">
+    <Key>
+      <PropertyRef Name="brandID" />
+    </Key>
+    <Property Name="brandID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="brandName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="brandDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Brands" FromRole="Brands" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="CartProducts">
+    <Key>
+      <PropertyRef Name="cartProductID" />
+    </Key>
+    <Property Name="cartID" Type="Int32" Nullable="false" />
+    <Property Name="productID" Type="Int32" Nullable="false" />
+    <Property Name="cartProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productQuantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_CartProducts_Products" FromRole="CartProducts" ToRole="Products" />
+    <NavigationProperty Name="ShoppingCarts" Relationship="Group6_iCLOTHINGDBModel.FK_CartProducts_ShoppingCarts" FromRole="CartProducts" ToRole="ShoppingCarts" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="categoryID" />
+    </Key>
+    <Property Name="categoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="categoryDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="departmentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Departments" Relationship="Self.FK_Categories_Departments" FromRole="Categories" ToRole="Departments" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories" FromRole="Categories" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="departmentID" />
+    </Key>
+    <Property Name="departmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="departmentName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="departmentDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Categories_Departments" FromRole="Departments" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="Emails">
+    <Key>
+      <PropertyRef Name="emailNo" />
+    </Key>
+    <Property Name="emailNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emailDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="emailSubject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="emailBody" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customerID" Type="Int32" Nullable="false" />
+    <Property Name="adminID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Administrators" Relationship="Self.FK_Emails_Administrators" FromRole="Emails" ToRole="Administrators" />
+    <NavigationProperty Name="Customers" Relationship="Group6_iCLOTHINGDBModel.FK_Emails_Customers" FromRole="Emails" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="ItemDeliveries">
+    <Key>
+      <PropertyRef Name="stickerID" />
+    </Key>
+    <Property Name="stickerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="stickerDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="customerID" Type="Int32" Nullable="false" />
+    <Property Name="productID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ItemDeliveries_Products" FromRole="ItemDeliveries" ToRole="Products" />
+    <NavigationProperty Name="Customers" Relationship="Group6_iCLOTHINGDBModel.FK_ItemDeliveries_Customers" FromRole="ItemDeliveries" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="productDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="productPrice" Type="Double" Nullable="false" />
+    <Property Name="productQty" Type="Int32" Nullable="false" />
+    <Property Name="brandID" Type="Int32" Nullable="false" />
+    <Property Name="categoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Brands" Relationship="Self.FK_Products_Brands" FromRole="Products" ToRole="Brands" />
+    <NavigationProperty Name="CartProducts" Relationship="Self.FK_CartProducts_Products" FromRole="Products" ToRole="CartProducts" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
+    <NavigationProperty Name="ItemDeliveries" Relationship="Self.FK_ItemDeliveries_Products" FromRole="Products" ToRole="ItemDeliveries" />
+  </EntityType>
+  <EntityType Name="UserComments">
+    <Key>
+      <PropertyRef Name="commentNo" />
+    </Key>
+    <Property Name="commentNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="commentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="commentDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Group6_iCLOTHINGDBModel.FK_UserComments_Customers" FromRole="UserComments" ToRole="Customers" />
+  </EntityType>
+  <Association Name="FK_Emails_Administrators">
+    <End Role="Administrators" Type="Self.Administrators" Multiplicity="1" />
+    <End Role="Emails" Type="Self.Emails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Administrators">
+        <PropertyRef Name="adminID" />
+      </Principal>
+      <Dependent Role="Emails">
+        <PropertyRef Name="adminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Brands">
+    <End Role="Brands" Type="Self.Brands" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brands">
+        <PropertyRef Name="brandID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="brandID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CartProducts_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="CartProducts" Type="Self.CartProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="CartProducts">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Categories_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="departmentID" />
+      </Principal>
+      <Dependent Role="Categories">
+        <PropertyRef Name="departmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemDeliveries_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ItemDeliveries" Type="Self.ItemDeliveries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="ItemDeliveries">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Group6_iCLOTHINGDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AboutUs" EntityType="Self.AboutUs" />
+    <EntitySet Name="Administrators" EntityType="Self.Administrators" />
+    <EntitySet Name="Brands" EntityType="Self.Brands" />
+    <EntitySet Name="CartProducts" EntityType="Self.CartProducts" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" />
+    <EntitySet Name="Emails" EntityType="Self.Emails" />
+    <EntitySet Name="ItemDeliveries" EntityType="Self.ItemDeliveries" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="UserComments" EntityType="Self.UserComments" />
+    <AssociationSet Name="FK_Emails_Administrators" Association="Self.FK_Emails_Administrators">
+      <End Role="Administrators" EntitySet="Administrators" />
+      <End Role="Emails" EntitySet="Emails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Brands" Association="Self.FK_Products_Brands">
+      <End Role="Brands" EntitySet="Brands" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CartProducts_Products" Association="Self.FK_CartProducts_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="CartProducts" EntitySet="CartProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Categories_Departments" Association="Self.FK_Categories_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Categories" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemDeliveries_Products" Association="Self.FK_ItemDeliveries_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ItemDeliveries" EntitySet="ItemDeliveries" />
+    </AssociationSet>
+    <EntitySet Name="UserPasswords" EntityType="Group6_iCLOTHINGDBModel.UserPasswords" />
+    <EntitySet Name="OrderStatuses" EntityType="Group6_iCLOTHINGDBModel.OrderStatuses" />
+    <EntitySet Name="ShoppingCarts" EntityType="Group6_iCLOTHINGDBModel.ShoppingCarts" />
+    <AssociationSet Name="FK_CartProducts_ShoppingCarts" Association="Group6_iCLOTHINGDBModel.FK_CartProducts_ShoppingCarts">
+      <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
+      <End Role="CartProducts" EntitySet="CartProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderStatuses_ShoppingCarts" Association="Group6_iCLOTHINGDBModel.FK_OrderStatuses_ShoppingCarts">
+      <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
+      <End Role="OrderStatuses" EntitySet="OrderStatuses" />
+    </AssociationSet>
+    <EntitySet Name="Customers" EntityType="Group6_iCLOTHINGDBModel.Customers" />
+    <EntitySet Name="UserQuerys" EntityType="Group6_iCLOTHINGDBModel.UserQuerys" />
+    <AssociationSet Name="FK_Emails_Customers" Association="Group6_iCLOTHINGDBModel.FK_Emails_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Emails" EntitySet="Emails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemDeliveries_Customers" Association="Group6_iCLOTHINGDBModel.FK_ItemDeliveries_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="ItemDeliveries" EntitySet="ItemDeliveries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShoppingCarts_Customers" Association="Group6_iCLOTHINGDBModel.FK_ShoppingCarts_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="ShoppingCarts" EntitySet="ShoppingCarts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserComments_Customers" Association="Group6_iCLOTHINGDBModel.FK_UserComments_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="UserComments" EntitySet="UserComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPasswords_Customers" Association="Group6_iCLOTHINGDBModel.FK_UserPasswords_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="UserPasswords" EntitySet="UserPasswords" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserQuerys_Customers" Association="Group6_iCLOTHINGDBModel.FK_UserQuerys_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="UserQuerys" EntitySet="UserQuerys" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserPasswords">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="userAccountName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="userEncryptedPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="passwordExpiryTime" Type="Int32" Nullable="false" />
+    <Property Name="userAccountExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Customers" Relationship="Group6_iCLOTHINGDBModel.FK_UserPasswords_Customers" FromRole="UserPasswords" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="OrderStatuses">
+    <Key>
+      <PropertyRef Name="statusID" />
+    </Key>
+    <Property Name="statusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="statusDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cartID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ShoppingCarts" Relationship="Group6_iCLOTHINGDBModel.FK_OrderStatuses_ShoppingCarts" FromRole="OrderStatuses" ToRole="ShoppingCarts" />
+  </EntityType>
+  <EntityType Name="ShoppingCarts">
+    <Key>
+      <PropertyRef Name="cartID" />
+    </Key>
+    <Property Name="cartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cartProductPrice" Type="Double" Nullable="false" />
+    <Property Name="cartProductQty" Type="Int32" Nullable="false" />
+    <Property Name="customerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CartProducts" Relationship="Group6_iCLOTHINGDBModel.FK_CartProducts_ShoppingCarts" FromRole="ShoppingCarts" ToRole="CartProducts" />
+    <NavigationProperty Name="OrderStatuses" Relationship="Group6_iCLOTHINGDBModel.FK_OrderStatuses_ShoppingCarts" FromRole="ShoppingCarts" ToRole="OrderStatuses" />
+    <NavigationProperty Name="Customers" Relationship="Group6_iCLOTHINGDBModel.FK_ShoppingCarts_Customers" FromRole="ShoppingCarts" ToRole="Customers" />
+  </EntityType>
+  <Association Name="FK_CartProducts_ShoppingCarts">
+    <End Type="Group6_iCLOTHINGDBModel.ShoppingCarts" Role="ShoppingCarts" Multiplicity="1" />
+    <End Type="Group6_iCLOTHINGDBModel.CartProducts" Role="CartProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShoppingCarts">
+        <PropertyRef Name="cartID" />
+      </Principal>
+      <Dependent Role="CartProducts">
+        <PropertyRef Name="cartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderStatuses_ShoppingCarts">
+    <End Type="Group6_iCLOTHINGDBModel.ShoppingCarts" Role="ShoppingCarts" Multiplicity="1" />
+    <End Type="Group6_iCLOTHINGDBModel.OrderStatuses" Role="OrderStatuses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShoppingCarts">
+        <PropertyRef Name="cartID" />
+      </Principal>
+      <Dependent Role="OrderStatuses">
+        <PropertyRef Name="cartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="customerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customerName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="customerShippingAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="customerBillingAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="customerDOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="customerGender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="customerEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Emails" Relationship="Group6_iCLOTHINGDBModel.FK_Emails_Customers" FromRole="Customers" ToRole="Emails" />
+    <NavigationProperty Name="ItemDeliveries" Relationship="Group6_iCLOTHINGDBModel.FK_ItemDeliveries_Customers" FromRole="Customers" ToRole="ItemDeliveries" />
+    <NavigationProperty Name="ShoppingCarts" Relationship="Group6_iCLOTHINGDBModel.FK_ShoppingCarts_Customers" FromRole="Customers" ToRole="ShoppingCarts" />
+    <NavigationProperty Name="UserComments" Relationship="Group6_iCLOTHINGDBModel.FK_UserComments_Customers" FromRole="Customers" ToRole="UserComments" />
+    <NavigationProperty Name="UserPasswords" Relationship="Group6_iCLOTHINGDBModel.FK_UserPasswords_Customers" FromRole="Customers" ToRole="UserPasswords" />
+    <NavigationProperty Name="UserQuerys" Relationship="Group6_iCLOTHINGDBModel.FK_UserQuerys_Customers" FromRole="Customers" ToRole="UserQuerys" />
+  </EntityType>
+  <EntityType Name="UserQuerys">
+    <Key>
+      <PropertyRef Name="queryNo" />
+    </Key>
+    <Property Name="queryNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="queryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="queryDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="customerID" Type="Int32" Nullable="false" />
+    <Property Name="queryResponse" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Customers" Relationship="Group6_iCLOTHINGDBModel.FK_UserQuerys_Customers" FromRole="UserQuerys" ToRole="Customers" />
+  </EntityType>
+  <Association Name="FK_Emails_Customers">
+    <End Type="Group6_iCLOTHINGDBModel.Customers" Role="Customers" Multiplicity="1" />
+    <End Type="Group6_iCLOTHINGDBModel.Emails" Role="Emails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="Emails">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemDeliveries_Customers">
+    <End Type="Group6_iCLOTHINGDBModel.Customers" Role="Customers" Multiplicity="1" />
+    <End Type="Group6_iCLOTHINGDBModel.ItemDeliveries" Role="ItemDeliveries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="ItemDeliveries">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShoppingCarts_Customers">
+    <End Type="Group6_iCLOTHINGDBModel.Customers" Role="Customers" Multiplicity="1" />
+    <End Type="Group6_iCLOTHINGDBModel.ShoppingCarts" Role="ShoppingCarts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="ShoppingCarts">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserComments_Customers">
+    <End Type="Group6_iCLOTHINGDBModel.Customers" Role="Customers" Multiplicity="1" />
+    <End Type="Group6_iCLOTHINGDBModel.UserComments" Role="UserComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="UserComments">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPasswords_Customers">
+    <End Type="Group6_iCLOTHINGDBModel.Customers" Role="Customers" Multiplicity="1" />
+    <End Type="Group6_iCLOTHINGDBModel.UserPasswords" Role="UserPasswords" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="UserPasswords">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserQuerys_Customers">
+    <End Type="Group6_iCLOTHINGDBModel.Customers" Role="Customers" Multiplicity="1" />
+    <End Type="Group6_iCLOTHINGDBModel.UserQuerys" Role="UserQuerys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="UserQuerys">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

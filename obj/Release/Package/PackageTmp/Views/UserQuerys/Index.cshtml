@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Group6_iCLOTHINGApp.Models.UserQuerys>
+
+    @{
+    ViewBag.Title = "Index";
+    }
+
+    <h2>User submitted queries</h2>
+
+
+    @foreach (var item in Model)
+{
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Customers.customerName):
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.queryDescription) |
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.queryDate) |
+        </td>
+        <td>
+            @Html.ActionLink("Reply", "Reply", new { id = item.queryNo }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.queryNo }) |
+
+        </td>
+    </tr>
+    <br />
+}

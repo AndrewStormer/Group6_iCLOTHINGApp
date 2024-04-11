@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>iCLOTHING</h1>
+    <p class="lead">buy some clothes</p>
+
+
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Create New Account", "NewAcctForm", "CreateAccount")</h2>
+        <p>Login to your user account.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Departments", "Index", "Departments")</h2>
+        <p>View different departments.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Brands", "Index", "Brands")</h2>
+        <p>view different brands we offer.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Add a comment", "Create", "UserComments")</h2>
+        <p>Leave your feedback of our website.</p>
+    </div>
+        @if (Session["admin"] != null)
+        {
+        <div class="col-md-4">
+            <h2>@Html.ActionLink("Admin Page", "Index", "Admin")</h2>
+            <p>Various admin functionality</p>
+        </div>
+        }
+
+</div>

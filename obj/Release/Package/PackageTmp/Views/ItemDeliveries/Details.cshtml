@@ -1,0 +1,42 @@
+﻿@model Group6_iCLOTHINGApp.Models.ItemDeliveries
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ItemDeliveries</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.stickerDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stickerDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customers.customerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customers.customerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Products.productName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Products.productName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.stickerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

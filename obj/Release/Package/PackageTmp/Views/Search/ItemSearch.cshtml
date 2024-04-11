@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "ItemSearch";
+}
+
+<h2>Item Search</h2>
+
+@using (Html.BeginForm("SubmitSearchForm", "Search"))
+{
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        Search for a product:
+        <div class="col-md-10">
+            <input type="text" name="query" id="query" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Group6_iCLOTHINGApp.Models.CartProducts>
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+<h2>Shopping Cart</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.productQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Products.productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Products.productPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@{
+    var count = 0;
+    foreach (var item in Model)
+    {
+        ++count;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.productQuantity)
+            </td>
+            <td>
+                @Html.ActionLink(item.Products.productName, "Details", "Products", new { id = item.Products.productID }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Products.productPrice)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.cartProductID }, null)
+            </td>
+        </tr>
+
+    }
+    if (count > 0)
+    {
+        
+
+#line default
+#line hidden
+
+#line 12 "C:\Users\lh730\AppData\Local\Temp\5E9203390B2AE0963989394972E499A1DFA2\4\Group6_iCLOTHINGApp\Views\CartProducts\Index.cshtml"
+   __o = Html.ActionLink("Check out cart", "CheckOut", new { @
+
+    }
+}
+
+</table>

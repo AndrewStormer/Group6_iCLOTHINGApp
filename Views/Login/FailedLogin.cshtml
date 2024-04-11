@@ -1,0 +1,26 @@
+﻿@using (Html.BeginForm("SubmitLoginForm", "Login"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Login failed. Username or password not recognized.</h4>
+        <hr />
+        <div class="form-group">
+            Username:
+            <div class="col-md-10">
+                <input type="text" name="userName" id="passWord" />
+            </div>
+        </div>
+        <div class="form-group">
+            Password:
+            <div class="col-md-10">
+                <input type="text" name="passWord" id="passWord" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

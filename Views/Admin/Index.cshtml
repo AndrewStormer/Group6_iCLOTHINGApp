@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+
+<!DOCTYPE html>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("User Comments", "Index", "UserComments")</h2>
+        <p>View user comments</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("User Queries", "Index", "UserQuerys")</h2>
+        <p>View and reply to user queries</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Edit About Us", "Edit", "AboutUs")</h2>
+        <p>Edit description of the website.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Modify Products", "Index", "Products")</h2>
+        <p>Edit, Create, or Delete Products.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Modify Categories", "Index", "Categories")</h2>
+        <p>Edit, Create, or Delete Categories.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Modify Departments", "Index", "Departments")</h2>
+        <p>Edit, Create, or Delete Departments.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Modify Brands", "Index", "Brands")</h2>
+        <p>Edit, Create, or Delete Brands.</p>
+    </div>
+</div>

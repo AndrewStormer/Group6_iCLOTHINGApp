@@ -1,0 +1,42 @@
+﻿@model Group6_iCLOTHINGApp.Models.ShoppingCarts
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ShoppingCarts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cartProductPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cartProductPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cartProductQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cartProductQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderStatuses.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderStatuses.status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.cartID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

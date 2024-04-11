@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Group6_iCLOTHINGApp.Models.AboutUs>
+
+    @{
+    Group6_iCLOTHINGApp.Controllers.AboutUsController aboutUsController = new Group6_iCLOTHINGApp.Controllers.AboutUsController();
+    Group6_iCLOTHINGApp.Models.AboutUs aboutUs = aboutUsController.findAboutUs(4);
+    }
+
+    <h2>About iCLOTHING</h2>
+
+    <p>
+        iCLOTHING address<br /> @Html.DisplayFor(modelItem => aboutUs.companyAddress)<br /><br /><br /><br />
+        iCLOTHING Shipping Policy<br /> @Html.DisplayFor(modelItem => aboutUs.companyReturnPolicy)<br /><br /><br /><br />
+        iCLOTHING Contact Information<br /> @Html.DisplayFor(modelItem => aboutUs.companyContactInfo)<br /><br /><br /><br />
+        What is iCLOTHING?<br /> @Html.DisplayFor(modelItem => aboutUs.companyBusinessDescription)<br /><br /><br /><br />
+    </p>

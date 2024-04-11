@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "AccountExists";
+}
+
+<h2>Account already exists.</h2>
+
+<div>
+    <h4>An account with the username you entered already exists.</h4>
+    Please login with this username or create an account with a different name.
+    <hr />
+</div>
+<p>
+    @Html.ActionLink("Login", "UserLoginForm", "Login");<br />
+    @Html.ActionLink("Create Account", "NewAcctForm", "CreateAccount");
+</p>
