@@ -1,2 +1,5 @@
 *.__projection.g.cs
+*.user
+*.sln
+*.csproj
 .DS_Store
